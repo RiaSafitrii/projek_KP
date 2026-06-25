@@ -42,4 +42,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function navigations()
+    {
+        return $this->belongsToMany(Navigation::class, 'nav_user_relations', 'user_id', 'navigation_id')->withPivot('id');
+    }
+
+    public function detailUser()
+    {
+        return $this->hasOne(DetailUser::class);
+    }
 }
