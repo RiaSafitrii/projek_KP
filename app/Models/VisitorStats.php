@@ -5,16 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class GroupNavigation extends Model
+class VisitorStats extends Model
 {
     use HasFactory;
-    protected $table = 'group_navigation';
+    protected $table = 'visitor_stats';
     protected $guarded=[
         'id'
     ];
-
-    public function navigations()
-    {
-        return $this->hasMany(Navigation::class);
-    }
 }
