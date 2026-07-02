@@ -24,6 +24,8 @@ return new class extends Migration
             $table->foreignId('category_id')->nullable()->constrained('categories')->onDelete('set null');
             $table->foreignId('operator_id')->nullable()->constrained('users')->onDelete('set null');
             $table->timestamps();
+            $table->string('status')->default('actived')->after('thumbnail');
+            $table->date('finaldate_of_announcement')->nullable()->after('publish_date');
         });
     }
 
@@ -32,6 +34,11 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('news');
+         Schema::table('news', function (Blueprint $table) {
+            $table->dropColumn([
+                'status',
+                'finaldate_of_announcement'
+            ]);
+        });
     }
 };
